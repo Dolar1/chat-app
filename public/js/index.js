@@ -9,10 +9,10 @@
 			// 	text: 'hey this is jen'
 			// })
 
-			socket.emit('createMessage', {
-				from : 'dolar',
-				text : 'yeah really'
-			})
+			// socket.emit('createMessage', {
+			// 	from : 'dolar',
+			// 	text : 'yeah really'
+			// })
 		});
 
 		socket.on('disconnect', function(){

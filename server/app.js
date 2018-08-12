@@ -24,11 +24,11 @@ io.on('connection', (socket)=>{
 	console.log('new user created');
 
 
-	socket.emit('newMessage' ,{
-		from: 'dolar',
-		text: 'see u tmrw',
-		createdAt: 123123,
-	});
+	// socket.emit('newMessage' ,{
+	// 	from: 'dolar',
+	// 	text: 'see u tmrw',
+	// 	createdAt: 123123, 
+	// });
 
 	// socket.emit('newEmail', {
 	// 	//in this object format we could give it anything as we need to emit the data to the client side
@@ -37,12 +37,20 @@ io.on('connection', (socket)=>{
 	// 	on: 'today'
 	// });
 
+
+
 	socket.on('createEmail', (newEmail)=>{
 		console.log('createEmail', newEmail);
 	});
 
 	socket.on('createMessage', (message)=>{
 		console.log('the message from the client tp the server' , message);
+
+		io.emit('newMessage',{
+			from: message.from,
+			text: message.text,
+			createdAt: new Date().getTime()
+		});
 	});
 
 	socket.on('disconnect', ()=>{
