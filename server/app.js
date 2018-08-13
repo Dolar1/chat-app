@@ -24,6 +24,22 @@ io.on('connection', (socket)=>{
 	console.log('new user created');
 
 
+
+	socket.emit('newMessage' ,{
+			from : 'admin',
+			text : 'welcome to the chat room',
+			createdAt : new Date().getTime()
+		});
+
+
+		socket.broadcast.emit('newMessage', {
+			from : 'admin',
+			text : 'new user joined',
+			createdAt : new Date().getTime()
+		})
+
+
+
 	// socket.emit('newMessage' ,{
 	// 	from: 'dolar',
 	// 	text: 'see u tmrw',
@@ -51,6 +67,15 @@ io.on('connection', (socket)=>{
 			text: message.text,
 			createdAt: new Date().getTime()
 		});
+
+		
+		
+
+		// socket.broadcast.emit('newMessage', {
+		// 	from: message.from,
+		// 	text: message.text,
+		// 	createdAt: new Date().getTime()
+		// });
 	});
 
 	socket.on('disconnect', ()=>{
